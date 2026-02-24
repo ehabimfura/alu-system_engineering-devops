@@ -1,1 +1,1 @@
-SSH project
+Server project
