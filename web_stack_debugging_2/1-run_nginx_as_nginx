@@ -7,4 +7,5 @@ else
 fi
 sed -i 's/listen 80 default_server/listen 8080 default_server/' /etc/nginx/sites-enabled/default
 sed -i 's/listen \[\:\:\]:80 default_server/listen [::]:8080 default_server/' /etc/nginx/sites-enabled/default
+pkill apache2 || true
 service nginx restart
