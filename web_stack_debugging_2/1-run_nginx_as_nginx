@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Fix nginx to run as nginx user and listen on port 8080
-sed -i 's/^user .*/user nginx;/' /etc/nginx/nginx.conf
+sed -i 's/^user .*/#&/' /etc/nginx/nginx.conf
+sed -i '1s/^/user nginx;\n/' /etc/nginx/nginx.conf
 sed -i 's/listen 80 default_server/listen 8080 default_server/' /etc/nginx/sites-enabled/default
 sed -i 's/listen \[\:\:\]:80 default_server/listen [::]:8080 default_server/' /etc/nginx/sites-enabled/default
 killall apache2
