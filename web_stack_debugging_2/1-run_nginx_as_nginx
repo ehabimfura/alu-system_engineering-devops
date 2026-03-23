@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 # Fix nginx to run as nginx user and listen on port 8080
 pkill -9 -f apache2 || true
+sleep 2
+service nginx start
 sleep 1
 service nginx start
