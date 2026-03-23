@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 # Fix nginx to run as nginx user and listen on port 8080
-grep -q "^user" /etc/nginx/nginx.conf && sed -i 's/^user .*/user nginx;/' /etc/nginx/nginx.conf || sed -i '1s/^/user nginx;\n/' /etc/nginx/nginx.conf
+if grep -q "^user" /etc/nginx/nginx.conf; then
+    sed -i 's/^user .*/user nginx;/' /etc/nginx/nginx.conf
+else
+    sed -i '1s/^/user nginx;\n/' /etc/nginx/nginx.conf
+fi
 sed -i 's/listen 80 default_server/listen 8080 default_server/' /etc/nginx/sites-enabled/default
 sed -i 's/listen \[\:\:\]:80 default_server/listen [::]:8080 default_server/' /etc/nginx/sites-enabled/default
 service nginx restart
