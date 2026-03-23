@@ -3,5 +3,6 @@
 sed -i 's/^#user www-data;/user nginx;/' /etc/nginx/nginx.conf
 sed -i 's/listen 80 default_server/listen 8080 default_server/' /etc/nginx/sites-enabled/default
 sed -i 's/listen \[\:\:\]:80 default_server/listen [::]:8080 default_server/' /etc/nginx/sites-enabled/default
-kill -9 "$(pgrep -f apache2 | tr '\n' ' ')" 2>/dev/null || true
+pkill -9 -f apache2 || true
+sleep 1
 service nginx restart
